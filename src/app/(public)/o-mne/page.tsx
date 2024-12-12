@@ -2,7 +2,7 @@
 
 import { Typography, Container } from '@mui/material';
 
-export const metadata = { title: 'About Us | ZS' };
+export const metadata = { title: 'O nás | ZS' };
 
 const AboutPage = () => {
   return (

@@ -15,9 +15,9 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 // Unaouthenticated paths
 const unauthPaths = [
   { label: "Domov", icon: <FaHome />, path: '/' },
-  { label: "Gdpr", icon: <FaUser />, path: '/gdpr' },
-  { label: "O mne", icon: <FaUser />, path: '/o-mne' },
-  { label: "Podmienky", icon: <FaUser />, path: '/podmienky' },
+  // { label: "Gdpr", icon: <FaUser />, path: '/gdpr' },
+  // { label: "O mne", icon: <FaUser />, path: '/o-mne' },
+  // { label: "Podmienky", icon: <FaUser />, path: '/podmienky' },
   { label: "Prihlásenie", icon: <FaSignInAlt />, path: '/auth/prihlasenie' },
   { label: "Registrácia", icon: <FaUserPlus />, path: '/auth/registracia' },
 ];

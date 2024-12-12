@@ -11,8 +11,12 @@ import { useTheme } from '@/components/ThemeProvider';
 const LoginPage = () => {
   const { isDarkMode, toggleDarkMode } = useTheme();
 
-  const handleSocialLogin = async (provider) => {
-    await signIn(provider);
+  const handleGoogleLogin = async () => {
+    await signIn('google');
+  };
+
+  const handleGitHubLogin = async () => {
+    await signIn('github');
   };
 
   return (
@@ -41,13 +45,13 @@ const LoginPage = () => {
           color: isDarkMode ? '#fff' : '#333',
           fontSize: '1.5rem',
         }}>
-          Access Your Account
+          Prihláste sa do svojho účtu
         </Typography>
 
         <Button
           variant="contained"
           color="primary"
-          onClick={() => handleSocialLogin('google')}
+          onClick={handleGoogleLogin}
           sx={{
             width: '100%',
             marginBottom: '15px',
@@ -58,20 +62,16 @@ const LoginPage = () => {
             padding: '12px',
             borderRadius: '50px',
             transition: '0.3s ease',
-            '&:hover': {
-              backgroundColor: '#4285f4',
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-            },
           }}
         >
           <Image src={GoogleIcon} alt="Google" width={20} height={20} style={{ marginRight: '12px' }} />
-          Continue with Google
+          Pokračovať cez Google
         </Button>
 
         <Button
           variant="contained"
           color="secondary"
-          onClick={() => handleSocialLogin('github')}
+          onClick={handleGitHubLogin}
           sx={{
             width: '100%',
             display: 'flex',
@@ -81,14 +81,10 @@ const LoginPage = () => {
             padding: '12px',
             borderRadius: '50px',
             transition: '0.3s ease',
-            '&:hover': {
-              backgroundColor: '#333',
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-            },
           }}
         >
           <Image src={GitHubIcon} alt="GitHub" width={20} height={20} style={{ marginRight: '12px' }} />
-          Continue with GitHub
+          Pokračovať cez GitHub
         </Button>
 
         <Typography sx={{
@@ -96,17 +92,14 @@ const LoginPage = () => {
           color: isDarkMode ? '#bbb' : '#555',
           fontSize: '0.9rem',
         }}>
-          Don’t have an account yet?{' '}
+          Ešte nemáte účet?{' '}
           <Link href="/auth/registracia" passHref>
             <Typography component="span" sx={{
               color: '#1976d2',
               fontWeight: '600',
               cursor: 'pointer',
-              '&:hover': {
-                textDecoration: 'underline',
-              },
             }}>
-              Register Now
+              Zaregistrujte sa teraz
             </Typography>
           </Link>
         </Typography>

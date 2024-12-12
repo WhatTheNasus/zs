@@ -3,20 +3,23 @@
 import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
 import { ThemeProvider as MuiThemeProvider, createTheme } from '@mui/material/styles';
 import { CssBaseline, IconButton } from '@mui/material'; 
-import DarkModeIcon from '@mui/icons-material/DarkMode';
-import LightModeIcon from '@mui/icons-material/LightMode';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
 
+// Theme context type definition
 type ThemeContextType = {
   isDarkMode: boolean;
   toggleDarkMode: () => void;
 };
 
+// Create the context
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 interface ThemeProviderProps {
   children: ReactNode;
 }
 
+// Hook for using the theme context
 export const useTheme = (): ThemeContextType => {
   const context = useContext(ThemeContext);
   if (!context) {
@@ -25,6 +28,7 @@ export const useTheme = (): ThemeContextType => {
   return context;
 };
 
+// Main ThemeProvider component
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -44,36 +48,53 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
     palette: {
       mode: isDarkMode ? 'dark' : 'light',
       primary: {
-        main: isDarkMode ? '#673ab7' : '#1976d2',
+        main: isDarkMode ? '#ff4081' : '#6200ea',
       },
       secondary: {
-        main: '#f50057',
+        main: isDarkMode ? '#c6ff00' : '#03dac6',
       },
       background: {
-        default: isDarkMode ? '#121212' : '#fafafa',
+        default: isDarkMode ? '#121212' : '#f5f5f5',
+        paper: isDarkMode ? '#1e1e1e' : '#ffffff',
       },
       text: {
-        primary: isDarkMode ? '#ffffff' : '#000000',
+        primary: isDarkMode ? '#e0e0e0' : '#202124',
+        secondary: isDarkMode ? '#bdbdbd' : '#5f6368',
+      },
+    },
+    typography: {
+      fontFamily: 'Poppins, Arial, sans-serif',
+      h1: {
+        fontSize: '2.5rem',
+        fontWeight: 700,
+      },
+      h2: {
+        fontSize: '2rem',
+        fontWeight: 600,
+      },
+      body1: {
+        fontSize: '1rem',
+        fontWeight: 400,
+      },
+      button: {
+        textTransform: 'uppercase',
+        fontWeight: 600,
       },
     },
     components: {
       MuiButton: {
         styleOverrides: {
           root: {
-            '&:hover': {
-              backgroundColor: isDarkMode ? '#9c27b0' : '#1565c0',
-            },
-            borderRadius: '8px',
-            padding: '8px 16px',
+            borderRadius: '16px',
+            padding: '10px 20px',
+            fontSize: '1rem',
           },
         },
       },
       MuiIconButton: {
         styleOverrides: {
           root: {
-            '&:hover': {
-              backgroundColor: 'rgba(0, 0, 0, 0.08)',
-            },
+            color: isDarkMode ? '#e0e0e0' : '#202124',
           },
         },
       },
@@ -88,25 +109,29 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
     <ThemeContext.Provider value={{ isDarkMode, toggleDarkMode }}>
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexDirection: 'column',
-          height: '100vh',
-          position: 'relative',
-        }}>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column',
+            height: '100vh',
+            background: isDarkMode
+              ? 'linear-gradient(to bottom, #212121, #424242)'
+              : 'linear-gradient(to bottom, #ffffff, #e3f2fd)',
+            position: 'relative',
+          }}
+        >
           {/* Toggle button for dark/light mode */}
-          <IconButton 
-            onClick={toggleDarkMode} 
+          <IconButton
+            onClick={toggleDarkMode}
             sx={{
               position: 'absolute',
               top: 20,
               right: 20,
-              color: isDarkMode ? '#fff' : '#000',
             }}
           >
-            {isDarkMode ? <LightModeIcon /> : <DarkModeIcon />}
+            {isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
           </IconButton>
           {children}
         </div>
