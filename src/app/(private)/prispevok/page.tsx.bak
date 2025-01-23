@@ -5,9 +5,11 @@ export const metadata = {
   title: "Zoznam Príspevkov | ZS",
 };
 
-const PostListPage = () => <PostsView />;
+const PostsPage = () => {
+  return <PostsView />;
+};
 
-export default PostListPage;
+export default PostsPage;
 
 // export default function PostListPage() {
 //   return (
