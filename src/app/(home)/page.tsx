@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/authOptions";
 import AuthenticatedView from "@/sections/AuthHomeView";
 import GuestView from "@/sections/NonAuthHomeView";
+import { redirect } from "next/navigation";
 
 // Page metadata
 export const metadata = {
@@ -20,7 +21,8 @@ export default async function HomePage() {
 
     // Return the appropriate view based on session presence
     if (userSession) {
-      return <AuthenticatedView session={userSession} />;
+      redirect("/prispevok");
+      // return <AuthenticatedView session={userSession} />;
     } else {
       return <GuestView />;
     }

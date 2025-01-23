@@ -1,13 +1,11 @@
 "use client";
 
-import React from "react";
-import { useSession } from "next-auth/react";
-import Avatar from "@mui/material/Avatar";
-import Box from "@mui/material/Box";
-import BottomNavigation from "@mui/material/BottomNavigation";
-import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import { useRouter } from "next/navigation";
-import { FaHome, FaSignInAlt, FaUserPlus, FaSignOutAlt, FaSearch, FaPlusSquare } from "react-icons/fa";
+import React from 'react';
+import { FaHome, FaSignInAlt, FaUserPlus, FaSearch, FaPlusSquare, FaSignOutAlt, FaInfoCircle } from 'react-icons/fa';
+import { Avatar, Box, BottomNavigation, BottomNavigationAction } from '@mui/material';
+import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
+import AuthenticatedView from "@/sections/AuthHomeView";
 
 export default function Navbar() {
   const { data: session } = useSession();
@@ -16,14 +14,16 @@ export default function Navbar() {
 
   const unauthPaths = [
     { label: "Domov", icon: <FaHome />, path: "/" },
-    { label: "Prihlásenie", icon: <FaSignInAlt />, path: "/auth/prihlasenie" },
+    { label: "O nás", icon: <FaInfoCircle />, path: "/o-nas" },
     { label: "Registrácia", icon: <FaUserPlus />, path: "/auth/registracia" },
-  ];
+    { label: "Prihlásenie", icon: <FaSignInAlt />, path: "/auth/prihlasenie" },
+  ]
 
   const authPaths = [
-    { label: "Domov", icon: <FaHome />, path: "/" },
+    { label: "Domov", icon: <FaHome />, path: "/prispevok" },
+    { label: "Hľadaj", icon: <FaSearch />, path: "/hladanie" },
     {
-      label: session?.user?.name || "Profil",
+      label: "Profil",
       icon: (
         <Avatar
           alt="User Avatar"
@@ -32,18 +32,11 @@ export default function Navbar() {
       ),
       path: "/profil",
     },
-    { label: "Hľadanie", icon: <FaSearch />, path: "/hladanie" },
-    { label: "Príspevky", icon: <FaPlusSquare />, path: "/prispevok" },
+    { label: "Pridaj", icon: <FaPlusSquare />, path: "/pridaj" },
     { label: "Odhlásenie", icon: <FaSignOutAlt />, path: "/auth/odhlasenie" },
   ];
 
   const navItems = session ? authPaths : unauthPaths;
-
-  React.useEffect(() => {
-    const currentPath = window.location.pathname;
-    const activeIndex = navItems.findIndex(item => item.path === currentPath);
-    setValue(activeIndex !== -1 ? activeIndex : 0);
-  }, [router, navItems]);
 
   return (
     <Box sx={{ width: "100%", position: "fixed", bottom: 0, left: 0 }}>
