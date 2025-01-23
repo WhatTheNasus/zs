@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import { fetchPostById } from "@/app/actions/posts";
+import Image from 'next/image'
 
 interface Post {
   id: string;
@@ -50,7 +51,7 @@ const PostDetailPage = ({ params }: { params: { prispevokId: string } }) => {
     <Container>
       <Typography variant="h4">{post.caption}</Typography>
       <Typography variant="body1">{post.user.name}</Typography>
-      <img src={post.imageUrl} alt={post.caption} />
+      <Image src={post.imageUrl} alt={post.caption} />
     </Container>
   );
 };

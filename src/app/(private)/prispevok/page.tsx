@@ -1,4 +1,4 @@
-import Typography from "@mui/material/Typography";
+// import Typography from "@mui/material/Typography";
 import PostsView from "@/views/(private)/PostsView";
 
 export const metadata = {
