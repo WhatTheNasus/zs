@@ -5,7 +5,7 @@ import { FaHome, FaSignInAlt, FaUserPlus, FaSearch, FaPlusSquare, FaSignOutAlt, 
 import { Avatar, Box, BottomNavigation, BottomNavigationAction } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
-import AuthenticatedView from "@/sections/AuthHomeView";
+// import AuthenticatedView from "@/sections/AuthHomeView";
 
 export default function Navbar() {
   const { data: session } = useSession();

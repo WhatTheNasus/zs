@@ -14,7 +14,7 @@ const Register = () => {
   const [isGdprChecked, setIsGdprChecked] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleLogin = async (provider) => {
+  const handleLogin = async (provider: string) => {
     if (!isGdprChecked) {
       setErrorMessage('Musíte súhlasiť so spracovaním osobných údajov.');
       return;
@@ -23,7 +23,7 @@ const Register = () => {
     await signIn(provider);
   };
 
-  const handleCheckboxChange = (event) => {
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsGdprChecked(event.target.checked);
     setErrorMessage('');
   };
