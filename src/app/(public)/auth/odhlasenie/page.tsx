@@ -15,10 +15,10 @@ const LogoutPage = () => {
   return (
     <>
       <Head>
-        <title>Sign Out | ZS</title>
+        <title>Odhlásenie | ZS</title>
       </Head>
       <div style={{ textAlign: 'center', paddingTop: '20px' }}>
-        <Typography variant="h4">Sign Out</Typography>
+        <Typography variant="h4">Naozaj sa chcete odhlásiť?</Typography>
         {session ? (
           <Button 
             variant="contained" 
@@ -26,11 +26,11 @@ const LogoutPage = () => {
             onClick={handleSignOut}
             sx={{ marginTop: '15px' }}
           >
-            Sign Out
+            Odhlásiť sa
           </Button>
         ) : (
           <Typography variant="body1" sx={{ marginTop: '15px' }}>
-            You are not logged in.
+            Boli ste odhlásený.
           </Typography>
         )}
       </div>
